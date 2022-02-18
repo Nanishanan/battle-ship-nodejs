@@ -57,7 +57,8 @@ function fill_ship(ship_type, length){
     x = document.getElementById('table_battleship').getElementsByTagName('td');
 
     if(alignment == 'HORIZONTAL'){
-        if(!((hori == ('G'|'H'|'I'|'J')) && (length == 5))){
+        if(!((hori > length) && (length == 5))){
+            console.log(hori, length)
             for(i=0;i<length;i++){
                 cell = (verti-1) + (hori)
                 console.log(parseInt(cell)+i)
