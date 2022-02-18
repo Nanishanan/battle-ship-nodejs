@@ -1,10 +1,94 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="index.js" type="text/javascript" defer></script>
     </head>
 
-    <body>
-        <h1> Welcome to Battleship </h1>
+    <body> 
+        <div class="container">
+            <h1> Welcome to Battleship Game </h1>
+            <br>  
+
+            <h2> Select the rows and cols for each ship: </h2>
+
+            <ul>
+                <li>
+                    Carrier -- Size 5 -- 
+                    <select id="carrier_align" name="carrier_align">
+                    </select> 
+        
+                    <select id="carrier_hor" name="carrier_hor">        
+                    </select> 
+
+                    <select id="carrier_ver" name="carrier_ver">
+                    </select> 
+                    <input type="button" value="Lock" onclick="fill_ship('carrier', '5')">
+                </li>
+                <li>Battleship -- Size 4 --
+                    <select id="battleship_align" name="battleship_align">
+                    </select> 
+        
+                    <select id="battleship_hor" name="battleship_hor">        
+                    </select> 
+
+                    <select id="battleship_ver" name="battleship_ver">
+                    </select> 
+                </li>
+                <li>Destroyer -- Size 3 --
+                    <select id="destroyer_align" name="destroyer_align">
+                    </select> 
+        
+                    <select id="destroyer_hor" name="destroyer_hor">        
+                    </select> 
+
+                    <select id="destroyer_ver" name="destroyer_ver">
+                    </select>
+                </li>
+                <li>Submarine -- Size 3 --
+                    <select id="submarine_align" name="submarine_align">
+                    </select> 
+        
+                    <select id="submarine_hor" name="submarine_hor">        
+                    </select> 
+
+                    <select id="submarine_ver" name="submarine_ver">
+                    </select> 
+                </li>
+                <li>Patrol Boat -- Size 2 --
+                    <select id="patrolboat_align" name="patrolboat_align">
+                    </select> 
+        
+                    <select id="patrolboat_hor" name="patrolboat_hor">        
+                    </select> 
+
+                    <select id="patrolboat_ver" name="patrolboat_ver">
+                    </select> 
+                </li>
+            </ul>
+
+            <table style="width: 20%; height:20em" class="table table-bordered" id="table_battleship">
+                <tr><td> </td> <th scope="col">A</th> <th scope="col">B</th> <th scope="col">C</th> <th scope="col">D</th> <th scope="col">E</th> <th scope="col">F</th> <th scope="col">G</th> <th scope="col">H</th> <th scope="col">I</th> <th scope="col">J</th> </tr>
+                <tr><th>1</th> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
+                <tr><th>2</th> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
+                <tr><th>3</th> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
+                <tr><th>4</th> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
+                <tr><th>5</th> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
+                <tr><th>6</th> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
+                <tr><th>7</th> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
+                <tr><th>8</th> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
+                <tr><th>9</th> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
+                <tr><th>10</th> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
+            </table>
+        </div>
+
+        <script>
+
+        </script>
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </body>
 </html>

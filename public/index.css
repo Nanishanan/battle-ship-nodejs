@@ -1,0 +1,18 @@
+/* table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  } */
+/* 
+
+table.table-bordered{
+    border:1px solid blue;
+    margin-top:20px;
+  } */
+
+table.table-bordered > tbody > tr > td{
+    border:1px solid black;
+}
+
+li{
+    padding: 2px;   
+}
