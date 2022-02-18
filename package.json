@@ -1,0 +1,22 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "BattleShip Game",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nanishanan/battle-ship-nodejs.git"
+  },
+  "author": "Naresh Kumar M",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nanishanan/battle-ship-nodejs/issues"
+  },
+  "homepage": "https://github.com/Nanishanan/battle-ship-nodejs#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
