@@ -1,5 +1,3 @@
-// const template = document.createAttribute('template')
-
 letter_template =   `
     <option value="1">A</option>
     <option value="2">B</option>
@@ -48,7 +46,9 @@ document.getElementById('patrolboat_hor').innerHTML += letter_template
 document.getElementById('patrolboat_ver').innerHTML += number_template
 document.getElementById('patrolboat_align').innerHTML += align_template
 
-function fill_ship(ship_type, length){
+const placed_cells = []
+
+function fill_ship(ship_type, length, color){
 
     const alignment = document.getElementById(ship_type + '_align').value
     const hori = document.getElementById(ship_type + '_hor').value
@@ -56,14 +56,44 @@ function fill_ship(ship_type, length){
 
     x = document.getElementById('table_battleship').getElementsByTagName('td');
 
+    duplicate_ship_cell = false
+
     if(alignment == 'HORIZONTAL'){
-        if(!((hori > length) && (length == 5))){
-            console.log(hori, length)
+        if(length <= (11-hori)){
+            cell = (verti-1) + (hori)
             for(i=0;i<length;i++){
-                cell = (verti-1) + (hori)
-                console.log(parseInt(cell)+i)
-                x[parseInt(cell)+i].style.backgroundColor = 'red'
+                if(placed_cells.includes(parseInt(cell)+i)){
+                    duplicate_ship_cell = true
+                }
             }
+            if(!duplicate_ship_cell){
+                for(i=0;i<length;i++){
+                    x[parseInt(cell)+i].style.backgroundColor = color
+                    placed_cells.push(parseInt(cell)+i)
+                }
+            }            
+            console.log(placed_cells)
+        } else {
+            alert("Choose a different value")
+        }
+    } else {
+        if(length <= (11-verti)){
+            cell = (verti-1) + (hori)
+            for(i=0;i<length;i++){
+                if(placed_cells.includes(parseInt(cell)+(i*10))){
+                    duplicate_ship_cell = true
+                }
+            }
+            if(!duplicate_ship_cell){
+                for(i=0;i<length;i++){
+                    x[parseInt(cell)+(i*10)].style.backgroundColor = color
+                    placed_cells.push(parseInt(cell)+(i*10))
+                }
+            }            
+            console.log(placed_cells)
+
+        } else {
+            alert("Choose a different value")
         }
     }
 
