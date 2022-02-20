@@ -1,10 +1,21 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+const http = require('http')
+const server = http.createServer(app)
+const io = require('socket.io')(server);
 
 app.use(express.static(__dirname + "/public"))
 
 app.get("/", (req, res)=>{
     res.sendFile(__dirname+"/public")
+})
+
+io.on('connection', (socket)=>{
+    console.log('A user Connected');
+
+    socket.on('disconnect', ()=>{
+        console.log('User disconnected')
+    })
 })
 
 app.listen(3000, ()=>{

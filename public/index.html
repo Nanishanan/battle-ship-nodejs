@@ -24,18 +24,20 @@
 
                     <select id="carrier_ver" name="carrier_ver">
                     </select> 
-                    <input type="button" value="Lock" onclick="fill_ship('carrier', '5', 'red')">
+                    <input type="button" value="Lock" onclick="fill_ship('carrier', '5', 'red', 'car_delete')">
+                    <input type="button" value="Delete" onclick="delete_ship('carrier', '5', 'car_delete')" disabled id="car_delete">
                 </li>
                 <li>Battleship -- Size 4 --
                     <select id="battleship_align" name="battleship_align">
                     </select> 
-        
+                    
                     <select id="battleship_hor" name="battleship_hor">        
                     </select> 
-
+                    
                     <select id="battleship_ver" name="battleship_ver">
                     </select>
-                    <input type="button" value="Lock" onclick="fill_ship('battleship', '4', 'blue')"> 
+                    <input type="button" value="Lock" onclick="fill_ship('battleship', '4', 'blue', 'bat_delete')"> 
+                    <input type="button" value="Delete" onclick="delete_ship('battleship', '4', 'bat_delete')" disabled id="bat_delete">
                 </li>
                 <li>Destroyer -- Size 3 --
                     <select id="destroyer_align" name="destroyer_align">
@@ -46,7 +48,8 @@
                     
                     <select id="destroyer_ver" name="destroyer_ver">
                     </select>
-                    <input type="button" value="Lock" onclick="fill_ship('destroyer', '3', 'orange')"> 
+                    <input type="button" value="Lock" onclick="fill_ship('destroyer', '3', 'orange', 'des_delete')"> 
+                    <input type="button" value="Delete" onclick="delete_ship('destroyer', '3', 'des_delete')" disabled id="des_delete">
                 </li>
                 <li>Submarine -- Size 3 --
                     <select id="submarine_align" name="submarine_align">
@@ -57,7 +60,8 @@
                     
                     <select id="submarine_ver" name="submarine_ver">
                     </select> 
-                    <input type="button" value="Lock" onclick="fill_ship('submarine', '3', 'pink')"> 
+                    <input type="button" value="Lock" onclick="fill_ship('submarine', '3', 'pink', 'sub_delete')"> 
+                    <input type="button" value="Delete" onclick="delete_ship('submarine', '3', 'sub_delete')" disabled id="sub_delete">
                 </li>
                 <li>Patrol Boat -- Size 2 --
                     <select id="patrolboat_align" name="patrolboat_align">
@@ -68,7 +72,8 @@
                     
                     <select id="patrolboat_ver" name="patrolboat_ver">
                     </select> 
-                    <input type="button" value="Lock" onclick="fill_ship('patrolboat', '2', 'violet')"> 
+                    <input type="button" value="Lock" onclick="fill_ship('patrolboat', '2', 'violet', 'pat_delete')"> 
+                    <input type="button" value="Delete" onclick="delete_ship('patrolboat', '2', 'pat_delete')" disabled id="pat_delete">
                 </li>
             </ul>
 
@@ -86,9 +91,10 @@
                 <tr><th>10</th> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
             </table>
         </div>
-
+        
+        <script src="/socket.io/socket.io.js"></script>
         <script>
-
+            var socket = io()
         </script>
         
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
