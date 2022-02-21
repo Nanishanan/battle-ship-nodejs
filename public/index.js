@@ -59,6 +59,20 @@ var submarine_index_in_pc = 0
 const patrolboat = []
 var patrolboat_index_in_pc = 0
 
+const comp_placed_cells = []
+
+const comp_carrier = []
+var comp_carrier_index_in_pc = 0
+const comp_battleship = []
+var comp_battleship_index_in_pc = 0
+const comp_destroyer = []
+var comp_destroyer_index_in_pc = 0
+const comp_submarine = []
+var comp_submarine_index_in_pc = 0
+const comp_patrolboat = []
+var comp_patrolboat_index_in_pc = 0
+
+
 function push_to_array(st, val){
     switch(st){
         case 'carrier':
@@ -198,4 +212,19 @@ table.onclick = (e)=>{
     cell = table.getElementsByTagName('td')
     cell[(rx+cX)].style.backgroundColor = 'black'
     // console.log(document.getElementsByTagName('td'))
+}
+
+function computer_generated_ships(){
+    for(i=0;i<5;i++){
+
+        if((Math.random()*10) > 5)
+            align = 'HORIZONTAL'
+        else
+            align - 'VERTICAL'
+
+        if (align == 'HORIZONTAL'){
+            
+        }
+
+    }
 }
