@@ -16,8 +16,12 @@ io.on('connection', (socket)=>{
     socket.on('disconnect', ()=>{
         console.log('User disconnected')
     })
+
+    socket.on('cell touched', (cell)=>{
+        console.log(`Cell touched is ${cell}`)
+    })
 })
 
-app.listen(3000, ()=>{
+server.listen(3000, ()=>{
     console.log("Server Connected to Port 3000")
 })

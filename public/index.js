@@ -148,7 +148,6 @@ function fill_ship(ship_type, length, color, but_name){
                 save_index(ship_type)
                 document.getElementById(but_name).disabled = false
             }            
-            console.log(placed_cells)
 
         } else {
             alert("Choose a different value")
@@ -160,7 +159,6 @@ function fill_ship(ship_type, length, color, but_name){
 function delete_ship(ship_type, length, but_name){
     document.getElementById(but_name).disabled = true
     var index = 0
-    console.log(ship_type)
 
     switch(ship_type){
         case 'carrier':
@@ -185,12 +183,19 @@ function delete_ship(ship_type, length, but_name){
             break;
     }
 
-    console.log("Index",index,"length", length)
-
-    for(i=index;i<(length+index);i++){
-        console.log("inside i", placed_cells[i])
+    for(i=parseInt(index);i<(parseInt(length)+parseInt(index));i++){
         x[placed_cells[i]].style.backgroundColor = 'white'
+        delete placed_cells[i]
     }
+}
 
-    placed_cells.splice(index, length)
+table = document.getElementById('table_battleship');
+
+table.onclick = (e)=>{
+    console.log("You clicked me", e.target.parentElement.rowIndex, e.target.cellIndex)
+    rx = (parseInt(e.target.parentElement.rowIndex)-1)*10
+    cX = parseInt(e.target.cellIndex)
+    cell = table.getElementsByTagName('td')
+    cell[(rx+cX)].style.backgroundColor = 'black'
+    // console.log(document.getElementsByTagName('td'))
 }
