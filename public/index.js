@@ -462,7 +462,6 @@ function start_game(){
                     pc_cell[cell].style.backgroundColor = 'black'
                 }
         }
-        console.log("While")
         no_end_game = false
     }
 }
