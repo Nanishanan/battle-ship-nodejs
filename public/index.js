@@ -59,6 +59,8 @@ var submarine_index_in_pc = 0
 const patrolboat = []
 var patrolboat_index_in_pc = 0
 
+var all_players_ships = []
+
 const comp_placed_cells = []
 
 const comp_carrier = []
@@ -71,6 +73,8 @@ const comp_submarine = []
 var comp_submarine_index_in_pc = 0
 const comp_patrolboat = []
 var comp_patrolboat_index_in_pc = 0
+
+var all_computers_ships = []
 
 
 function push_to_array(st, val){
@@ -253,7 +257,7 @@ function computer_generated_ships(){
                 if(pc_no_duplicate_cell){
                     for(i=0;i<5;i++){
                         cell = ((row-1)*10 + column) + i
-                        pc_table[cell].style.backgroundColor = 'red'
+                        // pc_table[cell].style.backgroundColor = 'red'
                         comp_placed_cells.push(cell)
                         comp_carrier.push(cell)
                         no_pc_carrier_placed = false
@@ -266,7 +270,7 @@ function computer_generated_ships(){
                 if(pc_no_duplicate_cell){
                     for(i=0;i<5;i++){
                         cell = ((row-1)*10 + column) + (i*10)
-                        pc_table[cell].style.backgroundColor = 'red'
+                        // pc_table[cell].style.backgroundColor = 'red'
                         comp_placed_cells.push(cell)
                         comp_carrier.push(cell)
                         no_pc_carrier_placed = false
@@ -287,7 +291,7 @@ function computer_generated_ships(){
                 if(pc_no_duplicate_cell){
                     for(i=0;i<4;i++){
                         cell = ((row-1)*10 + column) + i
-                        pc_table[cell].style.backgroundColor = 'blue'
+                        // pc_table[cell].style.backgroundColor = 'blue'
                         comp_placed_cells.push(cell)
                         comp_battleship.push(cell)
                         no_pc_battleship_placed = false
@@ -300,7 +304,7 @@ function computer_generated_ships(){
                 if(pc_no_duplicate_cell){
                     for(i=0;i<4;i++){
                         cell = ((row-1)*10 + column) + (i*10)
-                        pc_table[cell].style.backgroundColor = 'blue'
+                        // pc_table[cell].style.backgroundColor = 'blue'
                         comp_placed_cells.push(cell)
                         comp_battleship.push(cell)
                         no_pc_battleship_placed = false
@@ -321,7 +325,7 @@ function computer_generated_ships(){
                 if(pc_no_duplicate_cell){
                     for(i=0;i<3;i++){
                         cell = ((row-1)*10 + column) + i
-                        pc_table[cell].style.backgroundColor = 'orange'
+                        // pc_table[cell].style.backgroundColor = 'orange'
                         comp_placed_cells.push(cell)
                         comp_destroyer.push(cell)
                         no_pc_destroyer_placed = false
@@ -334,7 +338,7 @@ function computer_generated_ships(){
                 if(pc_no_duplicate_cell){
                     for(i=0;i<3;i++){
                         cell = ((row-1)*10 + column) + (i*10)
-                        pc_table[cell].style.backgroundColor = 'orange'
+                        // pc_table[cell].style.backgroundColor = 'orange'
                         comp_placed_cells.push(cell)
                         comp_destroyer.push(cell)
                         no_pc_destroyer_placed = false
@@ -355,7 +359,7 @@ function computer_generated_ships(){
                 if(pc_no_duplicate_cell){
                     for(i=0;i<3;i++){
                         cell = ((row-1)*10 + column) + i
-                        pc_table[cell].style.backgroundColor = 'pink'
+                        // pc_table[cell].style.backgroundColor = 'pink'
                         comp_placed_cells.push(cell)
                         comp_submarine.push(cell)
                         no_pc_sub_placed = false
@@ -368,7 +372,7 @@ function computer_generated_ships(){
                 if(pc_no_duplicate_cell){
                     for(i=0;i<3;i++){
                         cell = ((row-1)*10 + column) + (i*10)
-                        pc_table[cell].style.backgroundColor = 'pink'
+                        // pc_table[cell].style.backgroundColor = 'pink'
                         comp_placed_cells.push(cell)
                         comp_submarine.push(cell)
                         no_pc_sub_placed = false
@@ -389,7 +393,7 @@ function computer_generated_ships(){
                 if(pc_no_duplicate_cell){
                     for(i=0;i<2;i++){
                         cell = ((row-1)*10 + column) + i
-                        pc_table[cell].style.backgroundColor = 'violet'
+                        // pc_table[cell].style.backgroundColor = 'violet'
                         comp_placed_cells.push(cell)
                         comp_patrolboat.push(cell)
                         no_pc_boat_placed = false
@@ -402,7 +406,7 @@ function computer_generated_ships(){
                 if(pc_no_duplicate_cell){
                     for(i=0;i<2;i++){
                         cell = ((row-1)*10 + column) + (i*10)
-                        pc_table[cell].style.backgroundColor = 'violet'
+                        // pc_table[cell].style.backgroundColor = 'violet'
                         comp_placed_cells.push(cell)
                         comp_patrolboat.push(cell)
                         no_pc_boat_placed = false
@@ -428,18 +432,19 @@ function check_player_ships(){
 }
 
 
-table = document.getElementById('table_battleship');
+player_table_cells = document.getElementById('table_battleship').getElementsByTagName('td');
 
-table.onclick = (e)=>{
-    console.log("You clicked me", e.target.parentElement.rowIndex, e.target.cellIndex)
-    rx = (parseInt(e.target.parentElement.rowIndex)-1)*10
-    cX = parseInt(e.target.cellIndex)
-    cell = table.getElementsByTagName('td')
-    cell[(rx+cX)].style.backgroundColor = 'black'
-    // console.log(document.getElementsByTagName('td'))
-}
+// table.onclick = (e)=>{
+//     console.log("You clicked me", e.target.parentElement.rowIndex, e.target.cellIndex)
+//     rx = (parseInt(e.target.parentElement.rowIndex)-1)*10
+//     cX = parseInt(e.target.cellIndex)
+//     cell = table.getElementsByTagName('td')
+//     cell[(rx+cX)].style.backgroundColor = 'black'
+//     // console.log(document.getElementsByTagName('td'))
+// }
 
 pc_table_cells = document.getElementById('table_battleship_pc');
+var pc_played_cells = []
 
 function start_game(){
     document.getElementById('message_1').innerHTML += "<h3> Game Started </h3>"
@@ -448,20 +453,63 @@ function start_game(){
     var no_end_game = true
     document.getElementById('message').innerHTML += "<p> Your Turn </p>"
 
-    while(no_end_game){
-        pc_table_cells.onclick = (e)=>{
-            var rX = (parseInt(e.target.parentElement.rowIndex)-1)*10
-            var cX = parseInt(e.target.cellIndex)
-            var cell = (rX+cX)
-            pc_cell = pc_table_cells.getElementsByTagName('td')
+    all_players_ships = [...carrier, ...battleship, ...destroyer, ...submarine, ...patrolboat]
+    all_computers_ships = [...comp_carrier, ...comp_battleship, ...comp_destroyer, ...comp_submarine, ...comp_patrolboat]
 
-            if(comp_carrier.includes(cell) || comp_battleship.includes(cell) || comp_destroyer.includes(cell) || 
-                comp_submarine.includes(cell) || comp_patrolboat.includes(cell)) {
-                    pc_cell[cell].style.backgroundColor = 'green'
-                } else {
-                    pc_cell[cell].style.backgroundColor = 'black'
+
+    pc_table_cells.onclick = (e)=> {
+        var rX = (parseInt(e.target.parentElement.rowIndex)-1)*10
+        var cX = parseInt(e.target.cellIndex)
+        var cell = (rX+cX)
+        pc_cell = pc_table_cells.getElementsByTagName('td')
+
+        if(comp_carrier.includes(cell) || comp_battleship.includes(cell) || comp_destroyer.includes(cell) || 
+            comp_submarine.includes(cell) || comp_patrolboat.includes(cell)) {
+                pc_cell[cell].style.backgroundColor = 'green'
+
+                for(var i=0;i<all_computers_ships.length;i++){
+                    if(all_computers_ships[i]==cell){
+                        all_computers_ships.splice(i,1)
+                        break   
+                    }
                 }
+
+            } else {
+                pc_cell[cell].style.backgroundColor = 'black'
+            }
+        // console.log(all_computers_ships)
+        var comp_played = true
+        while(comp_played){
+            cell = generate_random_int(1,100)
+            if(pc_played_cells.includes(cell)){
+                console.log("Same cell")
+            } else {
+                if(carrier.includes(cell) || battleship.includes(cell) || destroyer.includes(cell) || 
+                    submarine.includes(cell) || patrolboat.includes(cell)) {
+                        player_table_cells[cell].style.backgroundColor = 'green'
+
+                        for(var i=0;i<all_players_ships.length;i++){
+                            if(all_players_ships[i]==cell){
+                                all_players_ships.splice(i,1)
+                                break   
+                            }
+                        }
+                } else {
+                    player_table_cells[cell].style.backgroundColor = 'black'
+                }
+                pc_played_cells.push(cell)
+                comp_played = false
+            }
         }
-        no_end_game = false
+        // console.log("PC", all_computers_ships.length)
+        // console.log("Player", all_players_ships.length)
+        if((all_players_ships.length == 0) || (all_computers_ships.length == 0)){
+            if(all_players_ships.length == 0){
+                document.getElementById('message_1').innerHTML += "<br><h4> Computer Won ! You Lost :( </h4>"
+            } else {
+                document.getElementById('message_1').innerHTML += "<br><h4> You have Won ! </h4>"
+            }
+
+        }
     }
 }
