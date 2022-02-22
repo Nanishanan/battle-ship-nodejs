@@ -439,14 +439,30 @@ table.onclick = (e)=>{
     // console.log(document.getElementsByTagName('td'))
 }
 
+pc_table_cells = document.getElementById('table_battleship_pc');
+
 function start_game(){
     document.getElementById('message_1').innerHTML += "<h3> Game Started </h3>"
     document.getElementById('inputs').style.display = "none"
+    document.getElementById('start_button').disabled = true
     var no_end_game = true
+    document.getElementById('message').innerHTML += "<p> Your Turn </p>"
 
     while(no_end_game){
+        pc_table_cells.onclick = (e)=>{
+            var rX = (parseInt(e.target.parentElement.rowIndex)-1)*10
+            var cX = parseInt(e.target.cellIndex)
+            var cell = (rX+cX)
+            pc_cell = pc_table_cells.getElementsByTagName('td')
 
+            if(comp_carrier.includes(cell) || comp_battleship.includes(cell) || comp_destroyer.includes(cell) || 
+                comp_submarine.includes(cell) || comp_patrolboat.includes(cell)) {
+                    pc_cell[cell].style.backgroundColor = 'green'
+                } else {
+                    pc_cell[cell].style.backgroundColor = 'black'
+                }
+        }
+        console.log("While")
+        no_end_game = false
     }
-
-    document.getElementById('message').innerHTML += "<p> Your Turn </p>"
 }
