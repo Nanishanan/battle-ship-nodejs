@@ -122,7 +122,7 @@ function fill_ship(ship_type, length, color, but_name){
 
     x = document.getElementById('table_battleship').getElementsByTagName('td');
 
-    duplicate_ship_cell = false
+    var duplicate_ship_cell = false
 
     if(alignment == 'HORIZONTAL'){
         if(length <= (11-hori)){
@@ -167,7 +167,7 @@ function fill_ship(ship_type, length, color, but_name){
             alert("Choose a different value")
         }
     }
-
+    check_player_ships()
 }
 
 function delete_ship(ship_type, length, but_name){
@@ -203,6 +203,231 @@ function delete_ship(ship_type, length, but_name){
     }
 }
 
+function generate_random_int(min, max){
+    return Math.floor(Math.random()*(max-min+1)+min)
+}
+
+pc_table = document.getElementById('table_battleship_pc').getElementsByTagName('td')
+var no_pc_carrier_placed = true
+var no_pc_battleship_placed = true
+var no_pc_destroyer_placed = true
+var no_pc_sub_placed = true
+var no_pc_boat_placed = true
+
+var not_all_ships_placed = true
+
+var pc_no_duplicate_cell = true
+
+
+function find_dup_placed_cell(cell, length, ali){
+    pc_no_duplicate_cell = true
+    if(ali == 'h'){
+        for(i=0;i<length;i++){
+            cell = ((row-1)*10 + column) + i
+            if(comp_placed_cells.includes(cell))
+                pc_no_duplicate_cell = false
+        }
+    } else {
+        for(i=0;i<length;i++){
+            cell = ((row-1)*10 + column) + (i*10)
+            if(comp_placed_cells.includes(cell))
+                pc_no_duplicate_cell = false
+        }
+    }
+    
+}
+
+function computer_generated_ships(){
+    while(not_all_ships_placed){
+        var align = ''
+        if(no_pc_carrier_placed){
+            if((generate_random_int(1,10)) > 5)
+                align = 'HORIZONTAL'
+            else
+                align = 'VERTICAL'
+
+            if (align == 'HORIZONTAL'){
+                column = generate_random_int(1,6)
+                row = generate_random_int(1,10)
+                find_dup_placed_cell(((row-1)*10 + column), 5, 'h')
+                if(pc_no_duplicate_cell){
+                    for(i=0;i<5;i++){
+                        cell = ((row-1)*10 + column) + i
+                        pc_table[cell].style.backgroundColor = 'red'
+                        comp_placed_cells.push(cell)
+                        comp_carrier.push(cell)
+                        no_pc_carrier_placed = false
+                    }
+                }
+            } else {
+                column = generate_random_int(1,10)
+                row = generate_random_int(1,6)
+                find_dup_placed_cell(((row-1)*10 + column), 5, 'v')
+                if(pc_no_duplicate_cell){
+                    for(i=0;i<5;i++){
+                        cell = ((row-1)*10 + column) + (i*10)
+                        pc_table[cell].style.backgroundColor = 'red'
+                        comp_placed_cells.push(cell)
+                        comp_carrier.push(cell)
+                        no_pc_carrier_placed = false
+                    }
+                }
+            }
+        }
+        if(no_pc_battleship_placed){
+            if((generate_random_int(1,10)) > 5)
+                align = 'HORIZONTAL'
+            else
+                align = 'VERTICAL'
+
+            if (align == 'HORIZONTAL'){
+                column = generate_random_int(1,7)
+                row = generate_random_int(1,10)
+                find_dup_placed_cell(((row-1)*10 + column), 4, 'h')
+                if(pc_no_duplicate_cell){
+                    for(i=0;i<4;i++){
+                        cell = ((row-1)*10 + column) + i
+                        pc_table[cell].style.backgroundColor = 'blue'
+                        comp_placed_cells.push(cell)
+                        comp_battleship.push(cell)
+                        no_pc_battleship_placed = false
+                    }
+                }
+            } else {
+                column = generate_random_int(1,10)
+                row = generate_random_int(1,7)
+                find_dup_placed_cell(((row-1)*10 + column), 4, 'v')
+                if(pc_no_duplicate_cell){
+                    for(i=0;i<4;i++){
+                        cell = ((row-1)*10 + column) + (i*10)
+                        pc_table[cell].style.backgroundColor = 'blue'
+                        comp_placed_cells.push(cell)
+                        comp_battleship.push(cell)
+                        no_pc_battleship_placed = false
+                    }
+                }
+            }
+        }
+        if(no_pc_destroyer_placed){
+            if((generate_random_int(1,10)) > 5)
+                align = 'HORIZONTAL'
+            else
+                align = 'VERTICAL'
+
+            if (align == 'HORIZONTAL'){
+                column = generate_random_int(1,8)
+                row = generate_random_int(1,10)
+                find_dup_placed_cell(((row-1)*10 + column), 3, 'h')
+                if(pc_no_duplicate_cell){
+                    for(i=0;i<3;i++){
+                        cell = ((row-1)*10 + column) + i
+                        pc_table[cell].style.backgroundColor = 'orange'
+                        comp_placed_cells.push(cell)
+                        comp_destroyer.push(cell)
+                        no_pc_destroyer_placed = false
+                    }
+                }
+            } else {
+                column = generate_random_int(1,10)
+                row = generate_random_int(1,8)
+                find_dup_placed_cell(((row-1)*10 + column), 3, 'v')
+                if(pc_no_duplicate_cell){
+                    for(i=0;i<3;i++){
+                        cell = ((row-1)*10 + column) + (i*10)
+                        pc_table[cell].style.backgroundColor = 'orange'
+                        comp_placed_cells.push(cell)
+                        comp_destroyer.push(cell)
+                        no_pc_destroyer_placed = false
+                    }
+                }
+            }
+        }
+        if(no_pc_sub_placed){
+            if((generate_random_int(1,10)) > 5)
+                align = 'HORIZONTAL'
+            else
+                align = 'VERTICAL'
+
+            if (align == 'HORIZONTAL'){
+                column = generate_random_int(1,8)
+                row = generate_random_int(1,10)
+                find_dup_placed_cell(((row-1)*10 + column), 3, 'h')
+                if(pc_no_duplicate_cell){
+                    for(i=0;i<3;i++){
+                        cell = ((row-1)*10 + column) + i
+                        pc_table[cell].style.backgroundColor = 'pink'
+                        comp_placed_cells.push(cell)
+                        comp_submarine.push(cell)
+                        no_pc_sub_placed = false
+                    }
+                }
+            } else {
+                column = generate_random_int(1,10)
+                row = generate_random_int(1,8)
+                find_dup_placed_cell(((row-1)*10 + column), 3, 'v')
+                if(pc_no_duplicate_cell){
+                    for(i=0;i<3;i++){
+                        cell = ((row-1)*10 + column) + (i*10)
+                        pc_table[cell].style.backgroundColor = 'pink'
+                        comp_placed_cells.push(cell)
+                        comp_submarine.push(cell)
+                        no_pc_sub_placed = false
+                    }
+                }
+            }
+        }
+        if(no_pc_boat_placed){
+            if((generate_random_int(1,10)) > 5)
+                align = 'HORIZONTAL'
+            else
+                align = 'VERTICAL'
+
+            if (align == 'HORIZONTAL'){
+                column = generate_random_int(1,9)
+                row = generate_random_int(1,10)
+                find_dup_placed_cell(((row-1)*10 + column), 2, 'h')
+                if(pc_no_duplicate_cell){
+                    for(i=0;i<2;i++){
+                        cell = ((row-1)*10 + column) + i
+                        pc_table[cell].style.backgroundColor = 'violet'
+                        comp_placed_cells.push(cell)
+                        comp_patrolboat.push(cell)
+                        no_pc_boat_placed = false
+                    }
+                }
+            } else {
+                column = generate_random_int(1,10)
+                row = generate_random_int(1,9)
+                find_dup_placed_cell(((row-1)*10 + column), 2, 'v')
+                if(pc_no_duplicate_cell){
+                    for(i=0;i<2;i++){
+                        cell = ((row-1)*10 + column) + (i*10)
+                        pc_table[cell].style.backgroundColor = 'violet'
+                        comp_placed_cells.push(cell)
+                        comp_patrolboat.push(cell)
+                        no_pc_boat_placed = false
+                    }
+                }
+            }
+        }
+        if(!(no_pc_carrier_placed || no_pc_battleship_placed || no_pc_destroyer_placed || no_pc_sub_placed || no_pc_boat_placed)){
+            not_all_ships_placed = false
+        }
+    }
+}
+
+computer_generated_ships()
+
+// Function to check whether player placed all the ships
+function check_player_ships(){
+    if((carrier.length > 0) && (battleship.length > 0) && (destroyer.length > 0) && (submarine.length > 0) && (patrolboat.length > 0)){
+        document.getElementById('start_button').disabled = false
+    } else {
+        document.getElementById('start_button').disabled = true
+    }
+}
+
+
 table = document.getElementById('table_battleship');
 
 table.onclick = (e)=>{
@@ -214,17 +439,14 @@ table.onclick = (e)=>{
     // console.log(document.getElementsByTagName('td'))
 }
 
-function computer_generated_ships(){
-    for(i=0;i<5;i++){
+function start_game(){
+    document.getElementById('message_1').innerHTML += "<h3> Game Started </h3>"
+    document.getElementById('inputs').style.display = "none"
+    var no_end_game = true
 
-        if((Math.random()*10) > 5)
-            align = 'HORIZONTAL'
-        else
-            align - 'VERTICAL'
-
-        if (align == 'HORIZONTAL'){
-            
-        }
+    while(no_end_game){
 
     }
+
+    document.getElementById('message').innerHTML += "<p> Your Turn </p>"
 }
