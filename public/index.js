@@ -202,7 +202,7 @@ function delete_ship(ship_type, length, but_name){
     }
 
     for(i=parseInt(index);i<(parseInt(length)+parseInt(index));i++){
-        x[placed_cells[i]].style.backgroundColor = 'white'
+        x[placed_cells[i]].style.backgroundColor = '#BCDD5A'
         delete placed_cells[i]
     }
 }
@@ -509,7 +509,6 @@ function start_game(){
             } else {
                 document.getElementById('message_1').innerHTML += "<br><h4> You have Won ! </h4>"
             }
-
         }
     }
 }

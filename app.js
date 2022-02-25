@@ -11,11 +11,11 @@ app.get("/", (req, res)=>{
 })
 
 io.on('connection', (socket)=>{
-    console.log('A user Connected');
+    // console.log('A user Connected');
 
-    socket.on('disconnect', ()=>{
-        console.log('User disconnected')
-    })
+    // socket.on('disconnect', ()=>{
+    //     console.log('User disconnected')
+    // })
 
     socket.on('cell touched', (cell)=>{
         console.log(`Cell touched is ${cell}`)
