@@ -138,7 +138,11 @@ function fill_ship(ship_type, length, color, but_name){
             }
             if(!duplicate_ship_cell){
                 for(i=0;i<length;i++){
-                    x[parseInt(cell)+i].style.backgroundColor = color
+                    x[parseInt(cell)+i].style.backgroundColor = '#BCDD5A'
+                    if(i==0){   
+                        var top = (verti*48) + (verti-1)
+                        x[parseInt(cell)+i].innerHTML += `<div class="img_div" id="img_id"><img src='carrier.png' class='ship_img' style='top:${(top)}px'></div>`
+                    }  
                     placed_cells.push(parseInt(cell)+i)
                     push_to_array(ship_type, (parseInt(cell)+i))
                 }
@@ -203,6 +207,12 @@ function delete_ship(ship_type, length, but_name){
 
     for(i=parseInt(index);i<(parseInt(length)+parseInt(index));i++){
         x[placed_cells[i]].style.backgroundColor = '#BCDD5A'
+        if(i==parseInt(index)){
+            var ele = document.getElementById('img_id')
+            ele.parentNode.removeChild(ele)
+            x[placed_cells[i]].innerHTML - `<div class="img_div" id="img_id"></div>`
+            console.log(x[placed_cells[i]].innerHTML)
+        }
         delete placed_cells[i]
     }
 }

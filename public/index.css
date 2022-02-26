@@ -41,3 +41,14 @@ li{
   width: 100%;
   margin-top: 10%;
 }
+
+.ship_img{
+  /* display: flex; */
+  position: absolute;
+  /* top: 48px; */
+  width: 10em;
+}
+
+/* .img_div{
+  overflow: visible;
+} */
