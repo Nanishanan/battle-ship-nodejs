@@ -164,6 +164,10 @@ function fill_ship(ship_type, length, color, but_name){
             if(!duplicate_ship_cell){
                 for(i=0;i<length;i++){
                     x[parseInt(cell)+(i*10)].style.backgroundColor = color
+                    if(i==0){
+                        var top = 135+ ((verti-1)*50)
+                        x[parseInt(cell)+(i*10)].innerHTML += `<div class="img_div" id="img_id"><img src='carrier.png' class='ship_img_verti' style='top:${(top)}px; left:-30px;'></div>`
+                    }
                     placed_cells.push(parseInt(cell)+(i*10))
                     push_to_array(ship_type, (parseInt(cell)+(i*10)))
                 }

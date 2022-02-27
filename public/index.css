@@ -17,6 +17,15 @@ table.table-bordered > tbody > tr > td{
     border:2px solid black;
 }
 
+table{
+  table-layout: fixed;
+}
+
+/* table > tbody >th {
+  width: 150px; 
+  height:20em;
+} */
+
 li{
     padding: 2px;   
 }
@@ -52,3 +61,10 @@ li{
 /* .img_div{
   overflow: visible;
 } */
+
+.ship_img_verti{
+  position: absolute;
+  /* top: 48px; */
+  width: 15em;
+  transform: rotate(90deg);
+}
