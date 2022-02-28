@@ -173,7 +173,8 @@ function fill_ship(ship_type, length, color, but_name){
                 }
                 save_index(ship_type)
                 document.getElementById(but_name).disabled = false
-            }            
+            }         
+            console.log()   
 
         } else {
             alert("Choose a different value")
